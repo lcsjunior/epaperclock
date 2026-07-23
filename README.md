@@ -39,6 +39,12 @@ on a LOLIN `d1_mini_pro` (v2).
 - [D1 mini Pro pinout](https://www.wemos.cc/en/latest/d1/d1_mini_pro.html)
 - [Waveshare 1.54" e-Paper — ESP32/8266 wiring](https://www.waveshare.com/wiki/1.54inch_e-Paper_Module_Manual#ESP32.2F8266)
 
+## HTTP endpoints
+
+| Endpoint  | Method | Auth | Description                              |
+|-----------|--------|------|------------------------------------------|
+| `/health` | GET    | none | Liveness check; returns `{"status":"UP"}`. |
+
 ## Weather
 
 OpenWeather *Current Weather Data* (not One Call 3.0):

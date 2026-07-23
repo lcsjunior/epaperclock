@@ -12,7 +12,8 @@ code does not.
 
 - `src/main.cpp` — boot sequence and `loop()`.
 - `src/modules/` — application wiring: `wifi_setup` (captive portal, custom
-  fields, save callback) and `ota_setup`.
+  fields, save callback), `ota_setup` and `http_server` (routes registered on
+  the WiFiManager portal server, after `initWifi()`).
 - `lib/fs/` — `AppConfig`: LittleFS + ArduinoJson persistence of `/config.json`.
 - `lib/commons/` — helpers shared across modules.
 

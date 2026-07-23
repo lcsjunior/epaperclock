@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include <config.h>
 
+#include "modules/http_server.h"
 #include "modules/ota_setup.h"
 #include "modules/wifi_setup.h"
 
@@ -14,6 +15,7 @@ void setup() {
 
   initWifi();
   initOta();
+  initHttpServer();
 
   Serial.printf_P(PSTR("weather location: %s\n"), AppConfig.weatherLocation());
   Serial.printf_P(PSTR("timezone: %s\n"), AppConfig.timezone());
