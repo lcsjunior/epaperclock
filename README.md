@@ -11,9 +11,10 @@ icon + temperature in °C — from the OpenWeatherMap *Current Weather* API.
 
 ## Display layout
 
-<img src="assets/display-mockup.svg" alt="1.54 inch e-paper clock mockup: 24h time, weather icon, temperature and city" width="280">
+<img src="assets/display-mockup.svg" alt="1.54 inch e-paper clock mockup: weather on top, date in the middle, large 24h time below" width="280">
 
-24h time (HH:MM), a weather condition icon, the temperature in °C, and the city.
+Weather on top (condition icon + temperature in °C), the date in the middle,
+and the large 24h time (HH:MM) below.
 
 ## Pinout (e-paper ↔ D1 mini Pro)
 
@@ -63,7 +64,8 @@ mapping), `weather[0].description`.
 - [ ] OpenWeatherMap fetch for Juiz de Fora (icon + °C), with a fallback when
       the data can't be retrieved (no WiFi / API error) — the clock must keep
       running, only the weather area degrades (stale/placeholder).
-- [ ] Partial-refresh clock rendering; periodic full refresh.
+- [ ] Partial-refresh rendering of the time, date (weekday + dd/mm) and weather;
+      periodic full refresh.
 - [ ] Add JST battery (LiPo) for portable power.
 - [ ] Add an RTC to keep time without WiFi — RobotDyn DS1307 shield for D1 mini
       (I2C).
