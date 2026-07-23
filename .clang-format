@@ -1,0 +1,8 @@
+BasedOnStyle: Google
+IndentWidth: 2
+ColumnLimit: 80
+SortIncludes: false
+IncludeBlocks: Preserve
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
