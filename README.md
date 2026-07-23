@@ -11,12 +11,26 @@ icon + temperature in °C — from the OpenWeatherMap *Current Weather* API.
 ## Display layout
 
 <img src="assets/display-mockup.svg" alt="1.54 inch e-paper clock mockup: weather on top, date in the middle, large 24h time below" width="280">
+<img src="assets/display-mockup-fallback.svg" alt="Fallback mockup: dashed cloud with a question mark, and dashes in place of the temperature, date and time" width="280">
 
-| Element | Content | Example |
-|---|---|---|
-| Time | 24h `HH:MM`, the largest element | `14:37` |
-| Temperature | current temp in °C, next to the weather icon | `18°C` |
-| Date | weekday + `dd/mm` | `QUA 22/07` |
+| Element | Content | Example | Fallback |
+|---|---|---|---|
+| Time | 24h `HH:MM`, the largest element | `14:37` | `--:--` |
+| Temperature | current temp in °C, next to the weather icon | `18°C` | `--°C` |
+| Date | weekday + `dd/mm` | `QUA 22/07` | `--- --/--` |
+
+The second mockup is the worst case, with every source missing — it is not a
+screen the firmware draws as a whole. Each area degrades on its own, and a field
+is only drawn from data the firmware actually has:
+
+- **No weather** — OpenWeather unreachable or erroring. Time and date come from
+  NTP/RTC and stay on screen; only the weather area falls back to the dashed
+  "unknown" icon and `--°C`.
+- **No time sync** — cold boot with no WiFi and no RTC yet, so the clock still
+  sits at the 1970 epoch. Time and date are drawn as dashes rather than as a
+  plausible-looking wrong time. Once the DS1307 is on the board this is limited
+  to a never-synced board: the RTC keeps the time across boots and NTP becomes
+  an adjustment.
 
 The mockup uses Bebas Neue; on-device that maps to a bitmap/GFX big font.
 
