@@ -77,7 +77,7 @@ mapping), `weather[0].description`.
 - [ ] Partial-refresh rendering of the time, date (weekday + dd/mm) and weather;
       periodic full refresh.
 - [ ] Add JST battery (LiPo) for portable power.
-- [ ] Add an RTC to keep time without WiFi — RobotDyn DS1307 shield for D1 mini
+- [x] Add an RTC to keep time without WiFi — RobotDyn DS1307 shield for D1 mini
       (I2C).
 - [ ] Measure local temperature with an SHT30 sensor (I2C).
 - [ ] Deep sleep to save battery (wake on timer, update, sleep; needs
