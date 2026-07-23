@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="400" viewBox="0 0 340 400" font-family="Arial, sans-serif">
+  <rect x="8" y="8" width="324" height="384" rx="16" fill="#e6e8ea" stroke="#b7bcc2" stroke-width="2"/>
+  <circle cx="26" cy="26" r="5" fill="#fff" stroke="#b7bcc2"/>
+  <circle cx="314" cy="26" r="5" fill="#fff" stroke="#b7bcc2"/>
+  <circle cx="26" cy="374" r="5" fill="#fff" stroke="#b7bcc2"/>
+  <circle cx="314" cy="374" r="5" fill="#fff" stroke="#b7bcc2"/>
+  <rect x="42" y="44" width="256" height="256" fill="#fbfbf9" stroke="#3a3a3a" stroke-width="2"/>
+  <g transform="translate(31.0,-54) scale(0.72)">
+    <g fill="none" stroke="#000000" stroke-width="6.8" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M92 210 a17 17 0 0 1 2 -33.6 a24 24 0 0 1 45 -4.6 a15 15 0 0 1 2 38.2 z" stroke-dasharray="14 10"/>
+      <path d="M112 218 a12 12 0 1 1 12 12 v7"/>
+    </g>
+    <circle cx="124" cy="248" r="4" fill="#000000"/>
+  </g>
+  <g fill="#000000">
+    <rect x="158.0" y="88.0" width="19.0" height="6.6"/>
+    <rect x="184.4" y="88.0" width="19.0" height="6.6"/>
+    <circle cx="223.7" cy="73.1" r="7.3" fill="none" stroke="#000000" stroke-width="4.6"/>
+    <path transform="translate(236.20,114) scale(0.06600,-0.06600)" d="M34 162V538Q34 620 75.5 665.0Q117 710 196 710Q275 710 316.5 665.0Q358 620 358 538V464H254V545Q254 610 199 610Q144 610 144 545V154Q144 90 199 90Q254 90 254 154V261H358V162Q358 80 316.5 35.0Q275 -10 196 -10Q117 -10 75.5 35.0Q34 80 34 162Z"/>
+  </g>
+  <g fill="#000000">
+    <rect x="108.37" y="157.8" width="11.3" height="4.3"/>
+    <rect x="123.67" y="157.8" width="11.3" height="4.3"/>
+    <rect x="139.03" y="157.8" width="11.3" height="4.3"/>
+    <rect x="161.98" y="157.8" width="11.3" height="4.3"/>
+    <rect x="177.28" y="157.8" width="11.3" height="4.3"/>
+    <path transform="translate(190.58,171) scale(0.03200,-0.03200)" d="M285 700H380L104 0H9Z"/>
+    <rect x="207.53" y="157.8" width="11.3" height="4.3"/>
+    <rect x="222.83" y="157.8" width="11.3" height="4.3"/>
+  </g>
+  <g fill="#000000">
+    <rect x="55.00" y="235.0" width="40.0" height="13.2"/>
+    <rect x="107.80" y="235.0" width="40.0" height="13.2"/>
+    <path transform="translate(157.59,288) scale(0.13199,-0.13199)" d="M41 487H147V381H41ZM41 106H147V0H41Z"/>
+    <rect x="185.41" y="235.0" width="40.0" height="13.2"/>
+    <rect x="238.20" y="235.0" width="40.0" height="13.2"/>
+  </g>
+  <rect x="120" y="300" width="100" height="14" fill="#d6b24a" stroke="#b7902f"/>
+  <text x="170" y="352" text-anchor="middle" font-size="15" fill="#5a5f66">Fallback &#183; fields without data are dashed</text>
+</svg>
