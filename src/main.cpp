@@ -16,9 +16,6 @@ void setup() {
   initWifi();
   initOta();
   initHttpServer();
-
-  Serial.printf_P(PSTR("weather location: %s\n"), AppConfig.weatherLocation());
-  Serial.printf_P(PSTR("timezone: %s\n"), AppConfig.timezone());
 }
 
 void loop() {

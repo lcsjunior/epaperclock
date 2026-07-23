@@ -50,7 +50,7 @@ on a LOLIN `d1_mini_pro` (v2).
 
 | Endpoint  | Method | Auth | Description                              |
 |-----------|--------|------|------------------------------------------|
-| `/health` | GET    | none | Liveness check; returns `{"status":"UP"}`. |
+| `/health` | GET    | none | Liveness check; returns status and datetime. |
 
 ## Weather
 
@@ -70,7 +70,7 @@ mapping), `weather[0].description`.
       based on the reference project. Portal custom config: OpenWeather API key,
       weather city/country (default `Juiz de Fora,BR`), and clock timezone
       (default `America/Sao_Paulo`).
-- [ ] NTP time sync (default `America/Sao_Paulo`).
+- [x] NTP time sync (default `America/Sao_Paulo`).
 - [ ] OpenWeatherMap fetch for Juiz de Fora (icon + °C), with a fallback when
       the data can't be retrieved (no WiFi / API error) — the clock must keep
       running, only the weather area degrades (stale/placeholder).
