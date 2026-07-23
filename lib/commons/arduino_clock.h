@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
-const char* formatLocalDateTime();
+bool isClockSynced();
+bool isClockSynced(time_t now);
+const char* formatDateTime();
 
 #endif  // ARDUINO_CLOCK_H
