@@ -4,25 +4,20 @@ Guidance for Claude Code (claude.ai/code) when working in this repository.
 
 ## Overview
 
-ESP8266 firmware (`d1_mini_pro` board) for a 1.54" e-paper clock: a 24h digital
-clock (NTP, `America/Sao_Paulo`, UTC−3) plus current weather for Juiz de Fora
-(condition icon + °C) from the OpenWeatherMap *Current Weather* API. Partial
-refresh is prioritized. Hardware, pinout, and display layout: see `README.md`.
-
-User-customizable settings live in the WiFiManager captive portal: the
-OpenWeather API key, the weather city/country (default `Juiz de Fora,BR`), and
-the clock timezone (default `America/Sao_Paulo`).
+ESP8266 firmware (`d1_mini_pro`) for a 1.54" e-paper clock — see `README.md`.
+The panel hasn't arrived: WiFi provisioning, settings and OTA exist, display
+code does not.
 
 ## Architecture (where things live)
 
-- `src/main.cpp` — currently a bare `LED_BUILTIN` blink; the e-paper display
-  isn't implemented yet (hardware not arrived), and the deps (`GxEPD2`,
-  `Adafruit GFX`) are out of `platformio.ini`.
-- `include/` — shared project headers; `lib/<LibName>/src/...` — private
-  libraries auto-discovered by PlatformIO; `test/` — native test runners.
-- WiFi is required for NTP and the OpenWeatherMap request; WiFi credentials, the
-  OWM API key, the weather city/country, and the timezone are entered in the
-  captive portal (see Overview) — not build flags.
+- `src/main.cpp` — boot sequence and `loop()`.
+- `src/modules/` — application wiring: `wifi_setup` (captive portal, custom
+  fields, save callback) and `ota_setup`.
+- `lib/fs/` — `AppConfig`: LittleFS + ArduinoJson persistence of `/config.json`.
+- `lib/commons/` — helpers shared across modules.
+
+Anything user-configurable belongs in the portal plus `Config`, not in build
+flags.
 
 ## Build, Test, Upload
 
@@ -34,7 +29,9 @@ pio device monitor     # serial monitor @ 115200 baud
 ```
 
 - **Always ask for explicit user confirmation before any upload/flash** — it
-  writes to physical hardware. Upload is over USB.
+  writes to physical hardware.
+- USB is the default upload path; keep it that way. OTA is opt-in per run or via
+  an untracked `local_settings.ini`.
 
 ## Conventions
 
