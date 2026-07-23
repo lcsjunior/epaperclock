@@ -10,8 +10,9 @@ icon + temperature in °C — from the OpenWeatherMap *Current Weather* API.
 
 ## Display layout
 
-<img src="assets/display-mockup.svg" alt="1.54 inch e-paper clock mockup: weather on top, date in the middle, large 24h time below" width="280">
-<img src="assets/display-mockup-fallback.svg" alt="Fallback mockup: dashed cloud with a question mark, and dashes in place of the temperature, date and time" width="280">
+| Normal | Fallback |
+|:---:|:---:|
+| <img src="assets/display-mockup.svg" alt="1.54 inch e-paper clock mockup: weather on top, date in the middle, large 24h time below" width="280"> | <img src="assets/display-mockup-fallback.svg" alt="Fallback mockup: dashed cloud with a question mark, and dashes in place of the temperature, date and time" width="280"> |
 
 | Element | Content | Example | Fallback |
 |---|---|---|---|
