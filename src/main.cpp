@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <config.h>
-#include <rtc_clock.h>
 
 #include "modules/http_server.h"
 #include "modules/ota_setup.h"
@@ -15,7 +14,6 @@ void setup() {
   AppConfig.load();
 
   initWifi();
-  RTC.begin();
   initOta();
   initHttpServer();
 }
