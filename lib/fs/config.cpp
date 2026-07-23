@@ -6,8 +6,9 @@
 
 constexpr const char* CONFIG_PATH = "/config.json";
 
-static const char DEFAULT_WEATHER_LOCATION[] PROGMEM = "Juiz de Fora,BR";
-static const char DEFAULT_TIMEZONE[] PROGMEM = "America/Sao_Paulo";
+static const char DEFAULT_OWM_LOCATION[] PROGMEM = "Juiz de Fora,BR";
+static const char DEFAULT_TIMEZONE[] PROGMEM = "BRT3";
+static const char DEFAULT_NTP_SERVER[] PROGMEM = "pool.ntp.org";
 
 Config AppConfig;
 
@@ -76,12 +77,16 @@ const char* Config::owmApiKey() const {
   return owmApiKey_;
 }
 
-const char* Config::weatherLocation() const {
-  return weatherLocation_;
+const char* Config::owmLocation() const {
+  return owmLocation_;
 }
 
 const char* Config::timezone() const {
   return timezone_;
+}
+
+const char* Config::ntpServer() const {
+  return ntpServer_;
 }
 
 void Config::setOtaPass(const char* value) {
@@ -92,20 +97,24 @@ void Config::setOwmApiKey(const char* value) {
   strlcpy(owmApiKey_, value, sizeof(owmApiKey_));
 }
 
-void Config::setWeatherLocation(const char* value) {
-  strlcpy(weatherLocation_, value, sizeof(weatherLocation_));
+void Config::setOwmLocation(const char* value) {
+  strlcpy(owmLocation_, value, sizeof(owmLocation_));
 }
 
 void Config::setTimezone(const char* value) {
   strlcpy(timezone_, value, sizeof(timezone_));
 }
 
+void Config::setNtpServer(const char* value) {
+  strlcpy(ntpServer_, value, sizeof(ntpServer_));
+}
+
 void Config::applyDefaults() {
   setOtaPass(OTA_PASSWORD);
   owmApiKey_[0] = '\0';
-  copyFromFlash(weatherLocation_, sizeof(weatherLocation_),
-                DEFAULT_WEATHER_LOCATION);
+  copyFromFlash(owmLocation_, sizeof(owmLocation_), DEFAULT_OWM_LOCATION);
   copyFromFlash(timezone_, sizeof(timezone_), DEFAULT_TIMEZONE);
+  copyFromFlash(ntpServer_, sizeof(ntpServer_), DEFAULT_NTP_SERVER);
 }
 
 void Config::convertFromJson(const JsonDocument& doc) {
@@ -113,8 +122,9 @@ void Config::convertFromJson(const JsonDocument& doc) {
 
   const char* otaPass = doc["ota_pass"];
   const char* owmApiKey = doc["owm_api_key"];
-  const char* weatherLocation = doc["weather_location"];
+  const char* owmLocation = doc["owm_location"];
   const char* timezone = doc["timezone"];
+  const char* ntpServer = doc["ntp_server"];
 
   if (otaPass) {
     setOtaPass(otaPass);
@@ -122,17 +132,21 @@ void Config::convertFromJson(const JsonDocument& doc) {
   if (owmApiKey) {
     setOwmApiKey(owmApiKey);
   }
-  if (weatherLocation) {
-    setWeatherLocation(weatherLocation);
+  if (owmLocation) {
+    setOwmLocation(owmLocation);
   }
   if (timezone) {
     setTimezone(timezone);
+  }
+  if (ntpServer) {
+    setNtpServer(ntpServer);
   }
 }
 
 void Config::convertToJson(JsonDocument& doc) const {
   doc["ota_pass"] = otaPass_;
   doc["owm_api_key"] = owmApiKey_;
-  doc["weather_location"] = weatherLocation_;
+  doc["owm_location"] = owmLocation_;
   doc["timezone"] = timezone_;
+  doc["ntp_server"] = ntpServer_;
 }

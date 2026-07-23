@@ -10,29 +10,33 @@ WiFiManager wifiManager;
 
 WiFiManagerParameter* wmOtaPass;
 WiFiManagerParameter* wmOwmApiKey;
-WiFiManagerParameter* wmWeatherLocation;
+WiFiManagerParameter* wmOwmLocation;
 WiFiManagerParameter* wmTimezone;
+WiFiManagerParameter* wmNtpServer;
 
 static void onWifiManagerSaveParams() {
   AppConfig.setOtaPass(wmOtaPass->getValue());
   AppConfig.setOwmApiKey(wmOwmApiKey->getValue());
-  AppConfig.setWeatherLocation(wmWeatherLocation->getValue());
+  AppConfig.setOwmLocation(wmOwmLocation->getValue());
   AppConfig.setTimezone(wmTimezone->getValue());
+  AppConfig.setNtpServer(wmNtpServer->getValue());
   AppConfig.save();
 }
 
 void initWifi() {
   // clang-format off
-  wmOtaPass         = new WiFiManagerParameter("ota_pass",         "OTA Password",        AppConfig.otaPass(),         15, "type=\"password\"");
-  wmOwmApiKey       = new WiFiManagerParameter("owm_api_key",      "OpenWeather API Key", AppConfig.owmApiKey(),       32, "type=\"password\"");
-  wmWeatherLocation = new WiFiManagerParameter("weather_location", "Weather City,Country",AppConfig.weatherLocation(), 48);
-  wmTimezone        = new WiFiManagerParameter("timezone",         "Timezone",            AppConfig.timezone(),        32);
+  wmOtaPass      = new WiFiManagerParameter("ota_pass",     "OTA Password",        AppConfig.otaPass(),     15, "type=\"password\"");
+  wmOwmApiKey    = new WiFiManagerParameter("owm_api_key",  "OpenWeather API Key", AppConfig.owmApiKey(),   32, "type=\"password\"");
+  wmOwmLocation  = new WiFiManagerParameter("owm_location", "Weather City,Country",AppConfig.owmLocation(), 32);
+  wmTimezone     = new WiFiManagerParameter("timezone",     "Timezone (POSIX TZ, ex.: BRT3)", AppConfig.timezone(), 15);
+  wmNtpServer    = new WiFiManagerParameter("ntp_server",   "NTP Server",          AppConfig.ntpServer(),   32);
   // clang-format on
 
   wifiManager.addParameter(wmOtaPass);
   wifiManager.addParameter(wmOwmApiKey);
-  wifiManager.addParameter(wmWeatherLocation);
+  wifiManager.addParameter(wmOwmLocation);
   wifiManager.addParameter(wmTimezone);
+  wifiManager.addParameter(wmNtpServer);
 
   wifiManager.setConfigPortalBlocking(false);
   wifiManager.setConfigPortalTimeout(WIFI_PORTAL_TIMEOUT_S);
@@ -42,4 +46,6 @@ void initWifi() {
   wifiManager.autoConnect(getApName());
   wifiManager.startWebPortal();
   waitWifi(WIFI_CONNECT_TIMEOUT_MS);
+
+  configTzTime(AppConfig.timezone(), AppConfig.ntpServer());
 }

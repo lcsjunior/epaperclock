@@ -1,12 +1,17 @@
 #include "http_server.h"
 
+#include <arduino_clock.h>
+
 #include "wifi_setup.h"
 
 static const char APPLICATION_JSON[] PROGMEM = "application/json";
-static const char HEALTH_UP[] PROGMEM = "{\"status\":\"UP\"}";
 
 void initHttpServer() {
   wifiManager.server->on("/health", HTTP_GET, []() {
-    wifiManager.server->send_P(200, APPLICATION_JSON, HEALTH_UP);
+    char buf[72];
+    snprintf_P(buf, sizeof(buf),
+               PSTR("{\"status\":\"UP\",\"datetime\":\"%s\"}"),
+               formatLocalDateTime());
+    wifiManager.server->send(200, FPSTR(APPLICATION_JSON), buf);
   });
 }
