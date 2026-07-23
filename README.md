@@ -20,18 +20,10 @@ icon + temperature in °C — from the OpenWeatherMap *Current Weather* API.
 | Temperature | current temp in °C, next to the weather icon | `18°C` | `--°C` |
 | Date | weekday + `dd/mm` | `QUA 22/07` | `--- --/--` |
 
-The second mockup is the worst case, with every source missing — it is not a
-screen the firmware draws as a whole. Each area degrades on its own, and a field
-is only drawn from data the firmware actually has:
-
-- **No weather** — OpenWeather unreachable or erroring. Time and date come from
-  NTP/RTC and stay on screen; only the weather area falls back to the dashed
-  "unknown" icon and `--°C`.
-- **No time sync** — cold boot with no WiFi and no RTC yet, so the clock still
-  sits at the 1970 epoch. Time and date are drawn as dashes rather than as a
-  plausible-looking wrong time. Once the DS1307 is on the board this is limited
-  to a never-synced board: the RTC keeps the time across boots and NTP becomes
-  an adjustment.
+Each area degrades on its own — the fallback mockup is the worst case, not a
+screen drawn as a whole. Weather falls back when OpenWeather fails; time and
+date fall back only on a never-synced board (no NTP, no RTC), rather than
+showing a plausible wrong time.
 
 The mockup uses Bebas Neue; on-device that maps to a bitmap/GFX big font.
 
@@ -62,7 +54,7 @@ on a LOLIN `d1_mini_pro` (v2).
 
 ## Weather
 
-OpenWeather *Current Weather Data* (not One Call 3.0):
+OpenWeather *Current Weather Data*:
 
 ```
 https://api.openweathermap.org/data/2.5/weather?q=Juiz%20de%20Fora,BR&units=metric&appid=<API_KEY>
