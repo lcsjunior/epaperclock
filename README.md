@@ -16,6 +16,18 @@ icon + temperature in °C — from the OpenWeatherMap *Current Weather* API.
 Weather on top (condition icon + temperature in °C), the date in the middle,
 and the large 24h time (HH:MM) below.
 
+Text elements:
+
+| Element | Content | Example |
+|---|---|---|
+| Time | 24h `HH:MM`, the largest element | `14:37` |
+| Temperature | current temp in °C, next to the weather icon | `18°C` |
+| Date | weekday + `dd/mm` | `QUA 22/07` |
+
+The mockup renders these with a tall condensed face (Bebas Neue) in pure black,
+matching the 1-bit panel. On-device this maps to a bitmap/GFX font (Adafruit GFX
+or a u8g2 big font); the icon is a monochrome weather glyph.
+
 ## Pinout (e-paper ↔ D1 mini Pro)
 
 Board: LOLIN `d1_mini_pro` (v2). This is the official GxEPD2 mapping for a
