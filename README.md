@@ -73,3 +73,6 @@ and `OWM_REFRESH_INTERVAL_MS` are firmware tunables, not user settings.
 3. [ ] Display: partial refresh only; full refresh after NTP sync.
 4. [ ] Run on the 600 mAh JST LiPo.
 5. [ ] Retry the OpenWeather request on failure.
+6. [ ] Cache the weather result (RTC memory) across deep sleep.
+7. [ ] Move the OpenWeather URL into config.
+8. [ ] Use HTTPS for the OpenWeather request.
