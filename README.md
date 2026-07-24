@@ -57,7 +57,7 @@ on a LOLIN `d1_mini_pro` (v2).
 OpenWeather *Current Weather Data*:
 
 ```
-http://api.openweathermap.org/data/2.5/weather?q=Juiz%20de%20Fora,BR&units=metric&lang=pt_br&appid=<API_KEY>
+http://api.openweathermap.org/data/2.5/weather?q=Juiz%20de%20Fora,BR&units=metric&appid=<API_KEY>
 ```
 
 Response fields used: `main.temp`, `weather[0].icon` / `weather[0].id` (icon
