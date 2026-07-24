@@ -68,17 +68,7 @@ and `OWM_REFRESH_INTERVAL_MS` are firmware tunables, not user settings.
 
 ## TODO
 
-- [ ] Re-add `GxEPD2` + `Adafruit GFX` and bring up the 1.54" panel.
-- [x] WiFi provisioning via a `wifi_setup` module (WiFiManager captive portal),
-      based on the reference project. Portal custom config: OpenWeather API key,
-      weather city/country (default `Juiz de Fora,BR`), and clock timezone
-      (POSIX TZ, default `BRT3`).
-- [x] NTP time sync (POSIX TZ, default `BRT3`).
-- [x] OpenWeatherMap fetch for Juiz de Fora (icon + °C), with a fallback when
-      the data can't be retrieved (no WiFi / API error) — the clock must keep
-      running, only the weather area degrades (stale/placeholder).
-- [ ] Partial-refresh rendering of the time, date (weekday + dd/mm) and weather;
-      periodic full refresh.
-- [ ] Add JST battery (LiPo) for portable power.
-- [ ] Deep sleep to save battery (wake on timer, update, sleep; needs
-      `D0`/`GPIO16` wired to `RST`).
+1. [ ] Migrate all code to ESP32.
+2. [ ] Deep sleep with NTP sync every 24h.
+3. [ ] Display: partial refresh only; full refresh after NTP sync.
+4. [ ] Run on the 600 mAh JST LiPo.
