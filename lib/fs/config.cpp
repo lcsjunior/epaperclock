@@ -8,7 +8,7 @@ constexpr const char* CONFIG_PATH = "/config.json";
 
 static const char DEFAULT_OWM_LOCATION[] PROGMEM = "Juiz de Fora,BR";
 static const char DEFAULT_TIMEZONE[] PROGMEM = "BRT3";
-static const char DEFAULT_NTP_SERVER[] PROGMEM = "pool.ntp.org";
+static const char DEFAULT_NTP_SERVER[] PROGMEM = "br.pool.ntp.org";
 
 Config AppConfig;
 
@@ -118,29 +118,11 @@ void Config::applyDefaults() {
 }
 
 void Config::convertFromJson(const JsonDocument& doc) {
-  applyDefaults();
-
-  const char* otaPass = doc["ota_pass"];
-  const char* owmApiKey = doc["owm_api_key"];
-  const char* owmLocation = doc["owm_location"];
-  const char* timezone = doc["timezone"];
-  const char* ntpServer = doc["ntp_server"];
-
-  if (otaPass) {
-    setOtaPass(otaPass);
-  }
-  if (owmApiKey) {
-    setOwmApiKey(owmApiKey);
-  }
-  if (owmLocation) {
-    setOwmLocation(owmLocation);
-  }
-  if (timezone) {
-    setTimezone(timezone);
-  }
-  if (ntpServer) {
-    setNtpServer(ntpServer);
-  }
+  setOtaPass(doc["ota_pass"] | otaPass_);
+  setOwmApiKey(doc["owm_api_key"] | owmApiKey_);
+  setOwmLocation(doc["owm_location"] | owmLocation_);
+  setTimezone(doc["timezone"] | timezone_);
+  setNtpServer(doc["ntp_server"] | ntpServer_);
 }
 
 void Config::convertToJson(JsonDocument& doc) const {

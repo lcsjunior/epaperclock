@@ -5,17 +5,21 @@ Guidance for Claude Code (claude.ai/code) when working in this repository.
 ## Overview
 
 ESP8266 firmware (`d1_mini_pro`) for a 1.54" e-paper clock — see `README.md`.
-The panel hasn't arrived: WiFi provisioning, settings and OTA exist, display
-code does not.
+The panel hasn't arrived: WiFi provisioning, settings, OTA, NTP time sync and
+OpenWeatherMap fetch exist; display code does not.
 
 ## Architecture (where things live)
 
 - `src/main.cpp` — boot sequence and `loop()`.
 - `src/modules/` — application wiring: `wifi_setup` (captive portal, custom
-  fields, save callback), `ota_setup` and `http_server` (routes registered on
-  the WiFiManager portal server, after `initWifi()`).
+  fields, save callback, `configTzTime` NTP sync), `ota_setup` and `http_server`
+  (routes registered on the WiFiManager portal server, after `initWifi()`).
 - `lib/fs/` — `AppConfig`: LittleFS + ArduinoJson persistence of `/config.json`.
-- `lib/commons/` — helpers shared across modules.
+- `lib/client/` — `WeatherMap` (`OpenWeatherMap`): *Current Weather* fetch,
+  throttled internally; `refresh()` is called every `loop()` and reads are
+  cached.
+- `lib/commons/` — `utilities`: helpers shared across modules (flash-string
+  copy, URL encode, AP name, time formatting, WiFi/NTP wait).
 
 Anything user-configurable belongs in the portal plus `Config`, not in build
 flags.

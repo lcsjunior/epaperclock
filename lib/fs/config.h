@@ -24,7 +24,7 @@ class Config {
 
  private:
   char otaPass_[16];
-  char owmApiKey_[32];
+  char owmApiKey_[48];
   char owmLocation_[32];
   char timezone_[16];
   char ntpServer_[32];

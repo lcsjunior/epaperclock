@@ -57,11 +57,14 @@ on a LOLIN `d1_mini_pro` (v2).
 OpenWeather *Current Weather Data*:
 
 ```
-https://api.openweathermap.org/data/2.5/weather?q=Juiz%20de%20Fora,BR&units=metric&appid=<API_KEY>
+http://api.openweathermap.org/data/2.5/weather?q=Juiz%20de%20Fora,BR&units=metric&lang=pt_br&appid=<API_KEY>
 ```
 
 Response fields used: `main.temp`, `weather[0].icon` / `weather[0].id` (icon
 mapping), `weather[0].description`.
+
+Fetch tuning stays in `platformio.ini` `build_flags` — `OWM_HTTP_TIMEOUT_MS`
+and `OWM_REFRESH_INTERVAL_MS` are firmware tunables, not user settings.
 
 ## TODO
 
@@ -69,15 +72,15 @@ mapping), `weather[0].description`.
 - [x] WiFi provisioning via a `wifi_setup` module (WiFiManager captive portal),
       based on the reference project. Portal custom config: OpenWeather API key,
       weather city/country (default `Juiz de Fora,BR`), and clock timezone
-      (default `America/Sao_Paulo`).
-- [x] NTP time sync (default `America/Sao_Paulo`).
+      (POSIX TZ, default `BRT3`).
+- [x] NTP time sync (POSIX TZ, default `BRT3`).
 - [ ] OpenWeatherMap fetch for Juiz de Fora (icon + °C), with a fallback when
       the data can't be retrieved (no WiFi / API error) — the clock must keep
       running, only the weather area degrades (stale/placeholder).
 - [ ] Partial-refresh rendering of the time, date (weekday + dd/mm) and weather;
       periodic full refresh.
 - [ ] Add JST battery (LiPo) for portable power.
-- [x] Add an RTC to keep time without WiFi — RobotDyn DS1307 shield for D1 mini
+- [ ] Add an RTC to keep time without WiFi — RobotDyn DS1307 shield for D1 mini
       (I2C).
 - [ ] Measure local temperature with an SHT30 sensor (I2C).
 - [ ] Deep sleep to save battery (wake on timer, update, sleep; needs
