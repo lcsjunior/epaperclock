@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <config.h>
+#include <open_weather_map.h>
 
 #include "modules/http_server.h"
 #include "modules/ota_setup.h"
@@ -16,9 +17,11 @@ void setup() {
   initWifi();
   initOta();
   initHttpServer();
+  OWM.begin(AppConfig.owmApiKey(), AppConfig.owmLocation());
 }
 
 void loop() {
   wifiManager.process();
   ArduinoOTA.handle();
+  OWM.refresh();
 }

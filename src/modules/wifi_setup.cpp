@@ -4,7 +4,14 @@
 #include <utilities.h>
 
 #define WIFI_PORTAL_TIMEOUT_S 300
+
+#ifndef WIFI_CONNECT_TIMEOUT_MS
 #define WIFI_CONNECT_TIMEOUT_MS 30000UL
+#endif
+
+#ifndef NTP_SYNC_TIMEOUT_MS
+#define NTP_SYNC_TIMEOUT_MS 5000UL
+#endif
 
 WiFiManager wifiManager;
 
@@ -26,7 +33,7 @@ static void onWifiManagerSaveParams() {
 void initWifi() {
   // clang-format off
   wmOtaPass      = new WiFiManagerParameter("ota_pass",     "OTA Password",        AppConfig.otaPass(),     15, "type=\"password\"");
-  wmOwmApiKey    = new WiFiManagerParameter("owm_api_key",  "OpenWeather API Key", AppConfig.owmApiKey(),   32, "type=\"password\"");
+  wmOwmApiKey    = new WiFiManagerParameter("owm_api_key",  "OpenWeather API Key", AppConfig.owmApiKey(),   48, "type=\"password\"");
   wmOwmLocation  = new WiFiManagerParameter("owm_location", "Weather City,Country",AppConfig.owmLocation(), 32);
   wmTimezone     = new WiFiManagerParameter("timezone",     "Timezone (POSIX TZ, ex.: BRT3)", AppConfig.timezone(), 15);
   wmNtpServer    = new WiFiManagerParameter("ntp_server",   "NTP Server",          AppConfig.ntpServer(),   32);
@@ -47,5 +54,6 @@ void initWifi() {
   wifiManager.startWebPortal();
   waitWifi(WIFI_CONNECT_TIMEOUT_MS);
 
-  configTzTime(AppConfig.timezone(), AppConfig.ntpServer());
+  configTzTime(AppConfig.timezone(), AppConfig.ntpServer(), "pool.ntp.org");
+  waitNtp(NTP_SYNC_TIMEOUT_MS);
 }
