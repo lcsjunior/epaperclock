@@ -72,3 +72,4 @@ and `OWM_REFRESH_INTERVAL_MS` are firmware tunables, not user settings.
 2. [ ] Deep sleep with NTP sync every 24h.
 3. [ ] Display: partial refresh only; full refresh after NTP sync.
 4. [ ] Run on the 600 mAh JST LiPo.
+5. [ ] Retry the OpenWeather request on failure.
