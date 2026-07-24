@@ -74,14 +74,11 @@ and `OWM_REFRESH_INTERVAL_MS` are firmware tunables, not user settings.
       weather city/country (default `Juiz de Fora,BR`), and clock timezone
       (POSIX TZ, default `BRT3`).
 - [x] NTP time sync (POSIX TZ, default `BRT3`).
-- [ ] OpenWeatherMap fetch for Juiz de Fora (icon + °C), with a fallback when
+- [x] OpenWeatherMap fetch for Juiz de Fora (icon + °C), with a fallback when
       the data can't be retrieved (no WiFi / API error) — the clock must keep
       running, only the weather area degrades (stale/placeholder).
 - [ ] Partial-refresh rendering of the time, date (weekday + dd/mm) and weather;
       periodic full refresh.
 - [ ] Add JST battery (LiPo) for portable power.
-- [ ] Add an RTC to keep time without WiFi — RobotDyn DS1307 shield for D1 mini
-      (I2C).
-- [ ] Measure local temperature with an SHT30 sensor (I2C).
 - [ ] Deep sleep to save battery (wake on timer, update, sleep; needs
       `D0`/`GPIO16` wired to `RST`).
