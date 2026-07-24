@@ -13,7 +13,7 @@
 
 static const char OWM_URL[] PROGMEM =
     "http://api.openweathermap.org/data/2.5/"
-    "weather?units=metric&lang=pt_br&q=%s&appid=%s";
+    "weather?units=metric&q=%s&appid=%s";
 
 OpenWeatherMap OWM;
 
